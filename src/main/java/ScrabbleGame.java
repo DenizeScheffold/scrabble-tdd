@@ -15,6 +15,7 @@ public class ScrabbleGame {
             char letterToReturn = word.charAt(i);
            sum += getLetterScore(letterToReturn);
         }
+        printTotalScore(sum, wordInput);
         return sum;
     }
 
@@ -65,5 +66,11 @@ public class ScrabbleGame {
         return 0;
     }
 
-
+    public boolean printTotalScore(int totalScore, String word) {
+        if(!(word.isEmpty() || totalScore == 0)) {
+            System.out.println("The word ´" + word + "´ gave a total score of " + totalScore + " points. Well done!");
+            return true;
+        }
+       return false;
+    }
 }
