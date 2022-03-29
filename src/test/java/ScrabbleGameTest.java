@@ -27,5 +27,31 @@ ScrabbleGame game1 = new ScrabbleGame();
     }
 
 
+    @Test
+    public final void shouldGive4Points(){
+        //F, H, V, W, Y
+        Assertions.assertEquals(4, game1.getLetterScore('F'));
+    }
+
+    @Test
+    public final void shouldGive5Points(){
+        //K
+        Assertions.assertEquals(5, game1.getLetterScore('K'));
+    }
+
+    @Test
+    public final void shouldGive8Points(){
+        //J, X
+        Assertions.assertEquals(8, game1.getLetterScore('X'));
+    }
+
+    @Test
+    public final void shouldGive10Points(){
+        //Q, Z
+        Assertions.assertEquals(10, game1.getLetterScore('Q'));
+    }
+
+
+
 
 }

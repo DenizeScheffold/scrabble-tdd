@@ -25,6 +25,17 @@ public class ScrabbleGame {
                 {'C', 3},
                 {'M', 3},
                 {'P', 3},
+                {'F', 4},
+                {'H', 4},
+                {'V', 4},
+                {'W', 4},
+                {'Y', 4},
+                {'K', 5},
+                {'J', 8},
+                {'X', 8},
+                {'Q', 10},
+                {'Z', 10}
+
 
         }).collect(Collectors.toMap(data -> (Character) data[0], data -> (Integer) data[1]));
 
