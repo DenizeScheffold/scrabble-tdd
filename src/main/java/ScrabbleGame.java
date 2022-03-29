@@ -59,9 +59,9 @@ public class ScrabbleGame {
     public int getLetterScore(char letter) {
 
         Map<Character, Integer> map = setScoreMap();
-        for (char c : map.keySet()) {
-            if (c == letter) {
-                return map.get(c);
+        for (char key : map.keySet()) {
+            if (key == letter) {
+                return map.get(key);
             }
         }
         return 0;
