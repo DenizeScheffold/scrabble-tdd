@@ -1,11 +1,13 @@
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 public class ScrabbleGameTest {
 
 ScrabbleGame game1 = new ScrabbleGame();
 
+@AfterAll
+public static void allTestsAreDone(){
+    System.out.println("All tests are done!");
+}
 
     @Test
     public void shouldGive1Point(){
@@ -29,37 +31,45 @@ ScrabbleGame game1 = new ScrabbleGame();
 
 
     @Test
-    public final void shouldGive4Points(){
+    public void shouldGive4Points(){
         //F, H, V, W, Y
         Assertions.assertEquals(4, game1.getLetterScore('F'));
     }
 
     @Test
-    public final void shouldGive5Points(){
+    public void shouldGive5Points(){
         //K
         Assertions.assertEquals(5, game1.getLetterScore('K'));
     }
 
     @Test
-    public final void shouldGive8Points(){
+    public void shouldGive8Points(){
         //J, X
         Assertions.assertEquals(8, game1.getLetterScore('X'));
     }
 
     @Test
-    public final void shouldGive10Points(){
+    public void shouldGive10Points(){
         //Q, Z
         Assertions.assertEquals(10, game1.getLetterScore('Q'));
     }
 
     @Test
-    public final void shouldGiveCorrectScore(){
+    public void shouldGiveCorrectScore(){
         Assertions.assertEquals(4, game1.getWordScore("ab"));
     }
 
 @Test
-    public final void shouldMakeWordToUpperCase(){
+    public void shouldMakeWordToUpperCase(){
         Assertions.assertEquals(7, game1.getWordScore("abC"));
 }
+
+    @DisplayName("All characters except English letters should give 9 points")
+    @Test
+    public void shouldOnlyGivePointsForEnglishLetters(){
+        Assertions.assertEquals(0, game1.getWordScore("Ö/9"));
+    }
+
+
 
 }
