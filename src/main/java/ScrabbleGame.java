@@ -15,6 +15,7 @@ public class ScrabbleGame {
             char letterToReturn = word.charAt(i);
            sum += getLetterScore(letterToReturn);
         }
+
         printTotalScore(sum, wordInput);
         return sum;
     }
