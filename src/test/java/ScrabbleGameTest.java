@@ -57,6 +57,9 @@ ScrabbleGame game1 = new ScrabbleGame();
         Assertions.assertEquals(4, game1.getWordScore("ab"));
     }
 
-
+@Test
+    public final void shouldMakeWordToUpperCase(){
+        Assertions.assertEquals(7, game1.getWordScore("abC"));
+}
 
 }
