@@ -6,6 +6,7 @@ public class ScrabbleGameTest {
 
 ScrabbleGame game1 = new ScrabbleGame();
 
+
     @Test
     public void shouldGive1Point(){
         //A, E, I, O, U, L, N, R, S, T
@@ -51,6 +52,10 @@ ScrabbleGame game1 = new ScrabbleGame();
         Assertions.assertEquals(10, game1.getLetterScore('Q'));
     }
 
+    @Test
+    public final void shouldGiveCorrectScore(){
+        Assertions.assertEquals(4, game1.getWordScore("ab"));
+    }
 
 
 

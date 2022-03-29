@@ -6,6 +6,18 @@ import java.util.stream.Stream;
 public class ScrabbleGame {
 
 
+    public int getWordScore(String wordInput) {
+        int sum = 0;
+
+        String word = wordInput.toUpperCase();
+
+        for(int i =0; i<word.length(); i++){
+            char letterToReturn = word.charAt(i);
+           sum += getLetterScore(letterToReturn);
+        }
+        return sum;
+    }
+
     public Map<Character, Integer> setScoreMap() {
 
         Map<Character, Integer> map = Stream.of(new Object[][]{
