@@ -1,28 +1,53 @@
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+
 public class ScrabbleGame {
 
+    public void setWord() {
 
-    public int getWordScore(String wordInput) {
+        ArrayList<String> words = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        String wordInput = "";
+        System.out.println("Your turn to play! Send one or more words. " +
+                "After every word, press Enter. When you´re done with placing your words, press Space + Enter to put your words in play.");
+
+        while (!(wordInput.contains(" "))) {
+            System.out.println("Send your next word, or write 0 (zero) if your done");
+            wordInput = scanner.nextLine();
+            words.add(wordInput);
+        }
+        getWordScore(words);
+    }
+
+//TODO: to uppercase
+    public int getWordScore(ArrayList<String> words) {
         int sum = 0;
+        StringBuilder wordsTogether = new StringBuilder();
 
-        String word = wordInput.toUpperCase();
+        for (String word : words) {
+            wordsTogether.append(word);
 
-        for(int i =0; i<word.length(); i++){
-            char letterToReturn = word.charAt(i);
-           sum += getLetterScore(letterToReturn);
         }
 
-        printTotalScore(sum, wordInput);
+        for (int i = 0; i < wordsTogether.length(); i++) {
+            char letterToReturn = wordsTogether.charAt(i);
+            sum += getLetterScore(letterToReturn);
+        }
+
+        printTotalScore(sum, words);
         return sum;
     }
 
+
+
     public Map<Character, Integer> setScoreMap() {
 
-        Map<Character, Integer> map = Stream.of(new Object[][]{
+        return Stream.of(new Object[][]{
                 {'A', 1},
                 {'E', 1},
                 {'I', 1},
@@ -52,26 +77,33 @@ public class ScrabbleGame {
 
 
         }).collect(Collectors.toMap(data -> (Character) data[0], data -> (Integer) data[1]));
-
-        return map;
     }
 
-    public int getLetterScore(char letter) {
 
+    public int getLetterScore(char letterToCheck) {
+        char letterInUpperCase = Character.toUpperCase(letterToCheck);
         Map<Character, Integer> map = setScoreMap();
         for (char key : map.keySet()) {
-            if (key == letter) {
+            if (key == letterInUpperCase) {
                 return map.get(key);
             }
         }
         return 0;
     }
 
-    public boolean printTotalScore(int totalScore, String word) {
-        if(!(word.isEmpty() || totalScore == 0)) {
-            System.out.println("The word ´" + word + "´ gave a total score of " + totalScore + " points. Well done!");
+    public boolean printTotalScore(int totalScore, ArrayList<String> words) {
+
+        StringBuilder builder = new StringBuilder();
+
+        for (String word : words) {
+            builder.append(word).append(",");
+        }
+
+        String commaseparatedlist = builder.toString();
+        if(!(commaseparatedlist.isEmpty() || totalScore == 0)) {
+            System.out.println("The word(s) ´" + commaseparatedlist + "´ gave a total score of " + totalScore + " points. Well done!");
             return true;
         }
-       return false;
+        return false;
     }
 }

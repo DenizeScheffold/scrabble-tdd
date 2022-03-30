@@ -1,14 +1,18 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.*;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ScrabbleGameTest {
 ScrabbleGame game1;
 
+
     @BeforeEach
     public void setUp() {
+
        game1 = new ScrabbleGame();
     }
 
@@ -62,30 +66,46 @@ ScrabbleGame game1;
         assertEquals(10, game1.getLetterScore('Q'));
     }
 
+
     @Test
     public void shouldGiveCorrectScore() {
-        assertEquals(4, game1.getWordScore("ab"));
+        ArrayList<String> words = new ArrayList<>();
+        words.add("ab");
+        assertEquals(4, game1.getWordScore(words));
     }
 
     @Test
     public void shouldMakeWordToUpperCase() {
-        assertEquals(7, game1.getWordScore("abC"));
+        ArrayList<String> words = new ArrayList<>();
+        words.add("abC");
+        assertEquals(7, game1.getWordScore(words));
     }
 
     @DisplayName("All characters except English letters should give 9 points")
     @Test
     public void shouldOnlyGivePointsForEnglishLetters() {
-        assertEquals(0, game1.getWordScore("Ö/9"));
+        ArrayList<String> words = new ArrayList<>();
+        words.add("Ö");
+        words.add("9/");
+        assertEquals(0, game1.getWordScore(words));
     }
+
 
 
     @Test
     public void shouldPrintOutTotalScore() {
-        assertTrue(game1.printTotalScore(7, "abC"));
+
+        ArrayList<String> words = new ArrayList<>();
+        words.add("ab");
+        words.add("cb");
+        assertTrue(game1.printTotalScore(7, words));
+
     }
 
     @Test
-    public void shouldGiveFeedback() {
+    public void shouldAcceptMoreWordsThanOne() {
 
     }
+
+
 }
