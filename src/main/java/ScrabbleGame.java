@@ -7,36 +7,37 @@ import java.util.stream.Stream;
 
 public class ScrabbleGame {
 
+
     public void setWord() {
 
         ArrayList<String> words = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
 
         String wordInput = "";
-        System.out.println("Your turn to play! Send one or more words. " +
-                "After every word, press Enter. When you´re done with placing your words, press Space + Enter to put your words in play.");
+        System.out.println("Your turn to play! You can play one or more words. " +
+                "After every word, press Enter. When you´re done with placing your words, press Space + Enter.");
 
         while (!(wordInput.contains(" "))) {
-            System.out.println("Send your next word, or write 0 (zero) if your done");
+            System.out.println("Place your next word, or press Space + Enter if your done");
             wordInput = scanner.nextLine();
             words.add(wordInput);
         }
-        getWordScore(words);
+        setWordScore(words);
     }
 
 
-    public int getWordScore(ArrayList<String> words) {
+
+    public int setWordScore(ArrayList<String> words) {
         int sum = 0;
         StringBuilder wordsTogether = new StringBuilder();
 
         for (String word : words) {
             wordsTogether.append(word);
-
         }
 
         for (int i = 0; i < wordsTogether.length(); i++) {
             char letterToReturn = wordsTogether.charAt(i);
-            sum += getLetterScore(letterToReturn);
+            sum += setLetterScore(letterToReturn);
         }
 
         printTotalScore(sum, words);
@@ -45,8 +46,22 @@ public class ScrabbleGame {
 
 
 
+    public int setLetterScore(char letterToCheck) {
+        char letterInUpperCase = Character.toUpperCase(letterToCheck);
+        Map<Character, Integer> map = setScoreMap();
+        for (char key : map.keySet()) {
+            if (key == letterInUpperCase) {
+                return map.get(key);
+            }
+        }
+        return 0;
+    }
+
+
+
     public Map<Character, Integer> setScoreMap() {
 //since it is stream return statement can be first. This is instead of  **  Map<Character, Integer> map = Stream.of(new Object[][]{  **
+
         return Stream.of(new Object[][]{
                 {'A', 1},
                 {'E', 1},
@@ -80,16 +95,6 @@ public class ScrabbleGame {
     }
 
 
-    public int getLetterScore(char letterToCheck) {
-        char letterInUpperCase = Character.toUpperCase(letterToCheck);
-        Map<Character, Integer> map = setScoreMap();
-        for (char key : map.keySet()) {
-            if (key == letterInUpperCase) {
-                return map.get(key);
-            }
-        }
-        return 0;
-    }
 
     public boolean printTotalScore(int totalScore, ArrayList<String> words) {
 
