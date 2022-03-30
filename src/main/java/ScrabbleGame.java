@@ -24,7 +24,7 @@ public class ScrabbleGame {
         getWordScore(words);
     }
 
-//TODO: to uppercase
+
     public int getWordScore(ArrayList<String> words) {
         int sum = 0;
         StringBuilder wordsTogether = new StringBuilder();
@@ -46,7 +46,7 @@ public class ScrabbleGame {
 
 
     public Map<Character, Integer> setScoreMap() {
-
+//since it is stream return statement can be first. This is instead of  **  Map<Character, Integer> map = Stream.of(new Object[][]{  **
         return Stream.of(new Object[][]{
                 {'A', 1},
                 {'E', 1},
