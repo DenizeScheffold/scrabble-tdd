@@ -32,6 +32,7 @@ public class ScrabbleGame {
 
     }
 
+
     public boolean isValidCharacter(String word) {
 
         if (word.matches("^[a-zA-Z]*$")) {
@@ -41,6 +42,7 @@ public class ScrabbleGame {
         }
         return false;
     }
+
 
     public int setWordScore(ArrayList<String> words) {
         int sum = 0;
@@ -102,7 +104,6 @@ public class ScrabbleGame {
                 {'X', 8},
                 {'Q', 10},
                 {'Z', 10}
-
 
         }).collect(Collectors.toMap(data -> (Character) data[0], data -> (Integer) data[1]));
     }

@@ -3,11 +3,17 @@ import org.junit.jupiter.api.*;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+import static com.diogonunes.jcolor.Ansi.*;
+import static com.diogonunes.jcolor.Attribute.*;
 
 public class ScrabbleGameTest {
     ScrabbleGame game1;
 
+
+    @BeforeAll
+    public static void letsTest(){
+        System.out.print(colorize("Tests are running...\n", YELLOW_TEXT()));
+    }
 
     @BeforeEach
     public void setUp() {
@@ -16,7 +22,7 @@ public class ScrabbleGameTest {
 
     @AfterAll
     public static void allTestsAreDone() {
-        System.out.println("All tests are done!");
+        System.out.print(colorize("All tests are done - check your result!", YELLOW_TEXT()));
     }
 
 
@@ -99,6 +105,5 @@ public class ScrabbleGameTest {
         words.add("cb");
         assertEquals(10, game1.setWordScore(words));
     }
-
 
 }
