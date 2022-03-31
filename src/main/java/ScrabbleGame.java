@@ -8,24 +8,39 @@ import java.util.stream.Stream;
 public class ScrabbleGame {
 
 
-    public void setWord() {
+    public void wordInput() {
 
         ArrayList<String> words = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
+        String wordInput;
 
-        String wordInput = "";
         System.out.println("Your turn to play! You can play one or more words. " +
-                "After every word, press Enter. When you´re done with placing your words, press Space + Enter.");
+                "After every word, press Enter. When you´re done with placing your words press Enter.");
 
-        while (!(wordInput.contains(" "))) {
+        while (true) {
             System.out.println("Place your next word, or press Space + Enter if your done");
             wordInput = scanner.nextLine();
-            words.add(wordInput);
+            if (wordInput == "") {
+                break;
+            }
+            if (isValidCharacter(wordInput)) {
+                words.add(wordInput);
+            }
         }
+
         setWordScore(words);
+
     }
 
+    public boolean isValidCharacter(String word) {
 
+        if (word.matches("^[a-zA-Z]*$")) {
+            return true;
+        } else {
+            System.out.println("Make sure to play only English letters. This word will not be played");
+        }
+        return false;
+    }
 
     public int setWordScore(ArrayList<String> words) {
         int sum = 0;
@@ -37,7 +52,7 @@ public class ScrabbleGame {
 
         for (int i = 0; i < wordsTogether.length(); i++) {
             char letterToReturn = wordsTogether.charAt(i);
-            sum += setLetterScore(letterToReturn);
+            sum += calculateLetterScore(letterToReturn);
         }
 
         printTotalScore(sum, words);
@@ -45,8 +60,7 @@ public class ScrabbleGame {
     }
 
 
-
-    public int setLetterScore(char letterToCheck) {
+    public int calculateLetterScore(char letterToCheck) {
         char letterInUpperCase = Character.toUpperCase(letterToCheck);
         Map<Character, Integer> map = setScoreMap();
         for (char key : map.keySet()) {
@@ -56,7 +70,6 @@ public class ScrabbleGame {
         }
         return 0;
     }
-
 
 
     public Map<Character, Integer> setScoreMap() {
@@ -95,7 +108,6 @@ public class ScrabbleGame {
     }
 
 
-
     public boolean printTotalScore(int totalScore, ArrayList<String> words) {
 
         StringBuilder builder = new StringBuilder();
@@ -105,10 +117,11 @@ public class ScrabbleGame {
         }
 
         String commaseparatedlist = builder.toString();
-        if(!(commaseparatedlist.isEmpty() || totalScore == 0)) {
+        if (!(commaseparatedlist.isEmpty() || totalScore == 0)) {
             System.out.println("The word(s) ´" + commaseparatedlist + "´ gave a total score of " + totalScore + " points. Well done!");
             return true;
         }
         return false;
     }
+
 }
