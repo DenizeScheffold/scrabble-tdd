@@ -29,9 +29,3 @@ And to total:
 Extra assignment:
 ● You can play a :double or a :triple letter.
 ● You can play a :double or a :triple word.
-
-
-The test should ensure:
-The letters have the correct value.
-No other characters than the letters of the English alphabet are inputted.
-The correct score is given.
