@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 public class ScrabbleGame {
@@ -43,6 +42,13 @@ public class ScrabbleGame {
         return false;
     }
 
+    public int randomDoublePointsForTile(){
+        Random random = new Random();
+        int tileToGiveDoublePoints = random.nextInt(10) + 1;
+        System.out.println(tileToGiveDoublePoints);
+        return tileToGiveDoublePoints;
+    }
+
 
     public int setWordScore(ArrayList<String> words) {
         int sum = 0;
@@ -52,13 +58,25 @@ public class ScrabbleGame {
             wordsTogether.append(word);
         }
 
+        int tileNumberToGiveDoublePointsFor = randomDoublePointsForTile();
+
+
         for (int i = 0; i < wordsTogether.length(); i++) {
             char letterToReturn = wordsTogether.charAt(i);
-            sum += calculateLetterScore(letterToReturn);
-        }
 
+            if(i==tileNumberToGiveDoublePointsFor){
+
+               sum += (calculateLetterScore(letterToReturn) * 2);
+               saveBonusForTest((calculateLetterScore(letterToReturn) * 2));
+        } else
+         sum += calculateLetterScore(letterToReturn);
+    }
         printTotalScore(sum, words);
         return sum;
+    }
+
+    public int saveBonusForTest(int bonus) {
+        return bonus;
     }
 
 
@@ -67,7 +85,9 @@ public class ScrabbleGame {
         ScrabblePointsSetup matchInMap = new ScrabblePointsSetup();
 
         char letterInUpperCase = Character.toUpperCase(letterToCheck);
+
         Map<Character, Integer> map = matchInMap.setScoreMap();
+
         for (char key : map.keySet()) {
             if (key == letterInUpperCase) {
                 return map.get(key);
@@ -88,6 +108,7 @@ public class ScrabbleGame {
         }
 
         String commaseparatedlist = builder.toString();
+
         if (!(commaseparatedlist.isEmpty() || totalScore == 0)) {
             System.out.println("The word(s) ´" + commaseparatedlist + "´ gave a total score of " + totalScore + " points. Well done!");
             return true;

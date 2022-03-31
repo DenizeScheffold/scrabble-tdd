@@ -73,14 +73,16 @@ public class ScrabbleGameTest {
     public void shouldGiveCorrectScore() {
         ArrayList<String> words = new ArrayList<>();
         words.add("ab");
-        assertEquals(4, game1.setWordScore(words));
+
+        int bonus = game1.saveBonusForTest()
     }
 
     @Test
     public void shouldMakeWordToUpperCase() {
         ArrayList<String> words = new ArrayList<>();
         words.add("abC");
-        assertEquals(7, game1.setWordScore(words));
+
+        assertEquals(7,  game1.setWordScore(words));
     }
 
     @DisplayName("Only words with English letters should be accepted")
@@ -104,6 +106,24 @@ public class ScrabbleGameTest {
         words.add("ab");
         words.add("cb");
         assertEquals(10, game1.setWordScore(words));
+    }
+
+    @DisplayName("Test should give one in this Array double score")
+    @RepeatedTest(3)
+    public void shouldRandomSelectTilesToGiveDoubleScore(){
+        ArrayList<String> words = new ArrayList<>();
+        words.add("a");
+        words.add("a");
+        words.add("a");
+        words.add("a");
+        words.add("a");
+        words.add("a");
+        words.add("a");
+        words.add("a");
+        words.add("a");
+        words.add("a");
+
+        assertEquals(11,game1.setWordScore(words));
     }
 
 }
