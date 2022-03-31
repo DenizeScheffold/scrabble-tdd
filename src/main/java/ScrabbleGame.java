@@ -7,15 +7,21 @@ import java.util.stream.Stream;
 
 public class ScrabbleGame {
 
+    SetupScrabbleGame setup1 = new SetupScrabbleGame();
+
 
     public void setWord() {
 
-        ArrayList<String> words = new ArrayList<>();
+        ArrayList<Character> lettersOnHand = new ArrayList<>();
+        setup1.gameSetUp(lettersOnHand);
+
         Scanner scanner = new Scanner(System.in);
 
         String wordInput = "";
-        System.out.println("Your turn to play! You can play one or more words. " +
+        System.out.println("\nYou can play one or more words. " +
                 "After every word, press Enter. When you´re done with placing your words, press Space + Enter.");
+
+        ArrayList<String> words = new ArrayList<>();
 
         while (!(wordInput.contains(" "))) {
             System.out.println("Place your next word, or press Space + Enter if your done");
