@@ -10,6 +10,8 @@ public class ScrabbleGameTest {
     ScrabbleGame game1;
 
 
+
+
     @BeforeAll
     public static void letsTest(){
         System.out.print(colorize("Tests are running...\n", YELLOW_TEXT()));
@@ -72,7 +74,7 @@ public class ScrabbleGameTest {
     @Test
     public void shouldGiveCorrectScore() {
         ArrayList<String> words = new ArrayList<>();
-        words.add("a");
+        words.add("ab");
         assertEquals(4, game1.setWordScore(words));
     }
 

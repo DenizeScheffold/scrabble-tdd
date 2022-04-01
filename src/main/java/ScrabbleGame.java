@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 public class ScrabbleGame {
 
 
+
     public void wordInput() {
 
         ArrayList<String> words = new ArrayList<>();
