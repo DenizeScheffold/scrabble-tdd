@@ -74,39 +74,38 @@ public class ScrabbleGameTest {
 
     @Test
     public void shouldGiveCorrectScore() {
-        ArrayList<String> words = new ArrayList<>();
-        words.add("ab");
-        assertEquals(4, game1.setWordScore(words));
+
+        assertEquals(33, game1.setWordScore(wordToCheck.getArrayWithOneForTest()));
     }
+
 
     @Test
     public void shouldMakeWordToUpperCase() {
-        ArrayList<String> words = new ArrayList<>();
-        words.add("abC");
-        assertEquals(7, game1.setWordScore(words));
+
+        assertEquals(33, game1.setWordScore(wordToCheck.getArrayWithOneForTest()));
     }
+
 
     @DisplayName("Word is chosen from arraylist in class TestSetup. For test to pass: only words with English letters should be accepted")
     @Test
     public void shouldOnlyAcceptEnglishLetters(){
-        assertTrue(game1.isValidCharacter(wordToCheck.sendAWordToTest()));
+
+        assertTrue(game1.isValidCharacter(wordToCheck.getOneTestWord()));
     }
+
+
+    @Test
+    public void shouldAcceptMoreWordsThanOne() {
+
+        ArrayList<String>wordsInTestArray = wordToCheck.getArrayWithOneForTest();
+        wordsInTestArray.add("ab");
+        assertEquals(37, game1.setWordScore(wordsInTestArray));
+    }
+
 
     @Test
     public void shouldPrintOutTotalScore() {
 
-        ArrayList<String> words = new ArrayList<>();
-        words.add("ab");
-        words.add("cb");
-        assertTrue(game1.printTotalScore(10, words));
+        assertTrue(game1.isPrintTotalScore(33, wordToCheck.getArrayWithOneForTest()));
     }
-
-    @Test
-    public void shouldAcceptMoreWordsThanOne() {
-        ArrayList<String> words = new ArrayList<>();
-        words.add("ab");
-        words.add("cb");
-        assertEquals(10, game1.setWordScore(words));
-    }
-
 }

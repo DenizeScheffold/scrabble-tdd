@@ -58,7 +58,7 @@ public class ScrabbleGame {
             sum += calculateLetterScore(letterToReturn);
         }
 
-        printTotalScore(sum, words);
+        isPrintTotalScore(sum, words);
         return sum;
     }
 
@@ -80,7 +80,7 @@ public class ScrabbleGame {
 
 
 
-    public boolean printTotalScore(int totalScore, ArrayList<String> words) {
+    public boolean isPrintTotalScore(int totalScore, ArrayList<String> words) {
 
         StringBuilder builder = new StringBuilder();
 
