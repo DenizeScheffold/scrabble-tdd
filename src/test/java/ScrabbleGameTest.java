@@ -72,7 +72,7 @@ public class ScrabbleGameTest {
     @Test
     public void shouldGiveCorrectScore() {
         ArrayList<String> words = new ArrayList<>();
-        words.add("ab");
+        words.add("a");
         assertEquals(4, game1.setWordScore(words));
     }
 
