@@ -8,7 +8,7 @@ import static com.diogonunes.jcolor.Attribute.*;
 
 public class ScrabbleGameTest {
     ScrabbleGame game1;
-
+    TestSetup wordToCheck;
 
 
 
@@ -20,6 +20,7 @@ public class ScrabbleGameTest {
     @BeforeEach
     public void setUp() {
         game1 = new ScrabbleGame();
+        wordToCheck = new TestSetup();
     }
 
     @AfterAll
@@ -85,10 +86,10 @@ public class ScrabbleGameTest {
         assertEquals(7, game1.setWordScore(words));
     }
 
-    @DisplayName("Only words with English letters should be accepted")
+    @DisplayName("Word is chosen from arraylist in class TestSetup. For test to pass: only words with English letters should be accepted")
     @Test
     public void shouldOnlyAcceptEnglishLetters(){
-        assertFalse(game1.isValidCharacter("tårna"));
+        assertTrue(game1.isValidCharacter(wordToCheck.sendAWordToTest()));
     }
 
     @Test
