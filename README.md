@@ -25,7 +25,3 @@ And to total:
 ● = 3 + 2 + 6 + 3
 ● = 5 + 9
 ● = 14
-
-Extra assignment:
-● You can play a :double or a :triple letter.
-● You can play a :double or a :triple word.
