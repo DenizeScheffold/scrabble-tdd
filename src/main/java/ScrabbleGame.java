@@ -1,8 +1,6 @@
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 
 public class ScrabbleGame {
@@ -58,7 +56,7 @@ public class ScrabbleGame {
             sum += calculateLetterScore(letterToReturn);
         }
 
-        isPrintTotalScore(sum, words);
+        printTotalScore(sum, words);
         return sum;
     }
 
@@ -80,7 +78,7 @@ public class ScrabbleGame {
 
 
 
-    public boolean isPrintTotalScore(int totalScore, ArrayList<String> words) {
+    public boolean printTotalScore(int totalScore, ArrayList<String> words) {
 
         StringBuilder builder = new StringBuilder();
 

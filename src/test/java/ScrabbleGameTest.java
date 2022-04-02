@@ -104,6 +104,6 @@ public class ScrabbleGameTest {
     @Test
     public void shouldPrintOutTotalScore() {
 
-        assertTrue(game1.isPrintTotalScore(33, wordToCheck.getArrayWithOneForTest()));
+        assertTrue(game1.printTotalScore(33, wordToCheck.getArrayWithOneForTest()));
     }
 }
