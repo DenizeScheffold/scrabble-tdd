@@ -11,9 +11,8 @@ public class ScrabbleGameTest {
     TestSetup wordToCheck;
 
 
-
     @BeforeAll
-    public static void letsTest(){
+    public static void letsTest() {
         System.out.print(colorize("Tests are running...\n", YELLOW_TEXT()));
     }
 
@@ -71,7 +70,7 @@ public class ScrabbleGameTest {
         assertEquals(10, game1.calculateLetterScore('Q'));
     }
 
-
+    @DisplayName("Word is chosen from arraylist in class TestSetup.")
     @Test
     public void shouldGiveCorrectScore() {
 
@@ -85,19 +84,18 @@ public class ScrabbleGameTest {
         assertEquals(33, game1.setWordScore(wordToCheck.getArrayWithOneForTest()));
     }
 
-
-    @DisplayName("Word is chosen from arraylist in class TestSetup. For test to pass: only words with English letters should be accepted")
+    @DisplayName("Game should only accept english letters. Boolean should be false to pass since the letter 'ö' should not be accepted in game")
     @Test
-    public void shouldOnlyAcceptEnglishLetters(){
+    public void shouldOnlyAcceptEnglishLetters() {
 
-        assertTrue(game1.isValidCharacter(wordToCheck.getOneTestWord()));
+        assertFalse(game1.isValidCharacter("ö"));
     }
 
 
     @Test
     public void shouldAcceptMoreWordsThanOne() {
 
-        ArrayList<String>wordsInTestArray = wordToCheck.getArrayWithOneForTest();
+        ArrayList<String> wordsInTestArray = wordToCheck.getArrayWithOneForTest();
         wordsInTestArray.add("ab");
         assertEquals(37, game1.setWordScore(wordsInTestArray));
     }
