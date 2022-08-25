@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.function.Predicate;
 
 
 public class ScrabbleGame {
-
 
 
     public void wordInput() {
@@ -19,7 +19,8 @@ public class ScrabbleGame {
         while (true) {
             System.out.println("Place your next word, or press Enter if your done");
             wordInput = scanner.nextLine();
-            if (wordInput == "") {
+
+            if (wordInput.equals("")) {
                 break;
             }
             if (isValidCharacter(wordInput)) {
@@ -34,14 +35,9 @@ public class ScrabbleGame {
 
     public boolean isValidCharacter(String word) {
 
-        if (word.matches("^[a-zA-Z]*$")) {
-            return true;
-        } else {
-            System.out.println("Make sure to play only English letters. This word will not be played");
-        }
-        return false;
+        Predicate<String> pStr = s -> s.matches("^[a-zA-Z]*$");
+        return pStr.test(word);
     }
-
 
     public int setWordScore(ArrayList<String> words) {
         int sum = 0;
@@ -76,22 +72,21 @@ public class ScrabbleGame {
     }
 
 
-
-
     public boolean printTotalScore(int totalScore, ArrayList<String> words) {
 
-        StringBuilder builder = new StringBuilder();
+        StringBuilder list = new StringBuilder();
 
         for (String word : words) {
-            builder.append(word).append(",");
+            list.append(word).append(",");
         }
 
-        String commaseparatedlist = builder.toString();
-        if (!(commaseparatedlist.isEmpty() || totalScore == 0)) {
-            System.out.println("The word(s) ´" + commaseparatedlist + "´ gave a total score of " + totalScore + " points. Well done!");
+        if (!(list.isEmpty() || totalScore == 0)) {
+            System.out.println("The word(s) ´" + list + "´ gave a total score of " + totalScore + " points. Well done!");
             return true;
         }
         return false;
     }
 
-}
+    }
+
+
